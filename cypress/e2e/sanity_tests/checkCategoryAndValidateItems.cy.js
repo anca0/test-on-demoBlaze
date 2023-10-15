@@ -1,10 +1,10 @@
 describe('Main Category Level Test', () => {
   before(() => {
     // Log in before the test
-    cy.visit('https://www.demoblaze.com/');
+    cy.visit('/');
     cy.contains('Log in').click();
-    cy.get('#loginusername').type('your_username');
-    cy.get('#loginpassword').type('your_password');
+    cy.get('#loginusername').type('username_anca');
+    cy.get('#loginpassword').type('anca');
     cy.get('#logInModal').contains('Log in').click();
   });
 

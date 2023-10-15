@@ -1,29 +1,30 @@
 describe('User Signup and Login Test', () => {
   it('Sign Up as a new user', () => {
-    cy.visit('https://www.demoblaze.com/');
+    cy.visit('/');
 
     // Click the "Sign Up" button
-    cy.contains('Sign up').click();
+    cy.get('#signin2').click();
 
     // Fill in the sign-up form
-    cy.get('#sign-username').type('username_anca');
-    cy.get('#sign-password').type('anca');
-    cy.get('#sign-up').click();
+    cy.get('#sign-username').type('anc');
+    cy.get('#sign-password').type('1234');
 
     // Validate if the modal appears for existing users
-    cy.get('#signInModal').should('be.visible');
+    cy.get('#signInModal .modal-footer .btn-primary').contains('Sign up').click();
   });
 
   it('Log in', () => {
-    cy.visit('https://www.demoblaze.com/');
+    cy.visit('/');
 
     // Click the "Log in" button
-    cy.contains('Log in').click();
+    cy.get('#login2').click();
 
     // Fill in the login form
-    cy.get('#loginusername').type('username_anca');
-    cy.get('#loginpassword').type('anca');
-    cy.get('#logInModal').contains('Log in').click();
+    cy.get('#loginusername').focus().type('anc');
+    cy.get('#loginpassword').type('1234');
+    cy.get('#logInModal .modal-footer .btn-primary').contains('Log in').click();
+
+    cy.url().should('eq ','/index.html')
   });
 
   it('Log out', () => {
@@ -36,8 +37,8 @@ describe('User Signup and Login Test', () => {
     cy.contains('Log in').click();
 
     // Fill in the login form with an invalid user
-    cy.get('#loginusername').type('username_notAnca');
-    cy.get('#loginpassword').type('somePass');
+    cy.get('#loginusername').type('notAnc');
+    cy.get('#loginpassword').type('pass');
     cy.get('#logInModal').contains('Log in').click();
 
     // Validate that an error message appears
